@@ -1,0 +1,51 @@
+{% trans_default_domain 'FOSUserBundle'%}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container" style="margin-top :10px">
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-xs-1 col-sm-1"></div>
+        <div class="col-xs-10 col-sm-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center"><h1>Liste d'utilisateur</h1></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>#Id</th>
+                                <th>Nom</th>
+                                <th>@Email</th>
+                                <th>Rôle</th>
+                                <th>Afficher</th>
+                                <th>Modifier</th>
+
+                            </tr>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        {% for role in user.roles %}
+                                            {{ role }}
+                                        {% endfor %}
+                                    </td>
+                                    <td> <a class="btn btn-primary " type="button" href="{{ path('user_show', { 'id': user.id }) }}" >Afficher</a></td>
+                                    <td> <a class="btn btn-primary " type="button" href="{{ path('user_edit', { 'id': user.id }) }}" >Modifier</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('user_new') }}" >Créer un Urilisateur</a>
+                    </div>
+
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1"></div>
+    </div>
+</div>
+
+{% endblock %}
+
