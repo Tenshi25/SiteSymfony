@@ -25,6 +25,7 @@ class UserController extends Controller
      */
     public function indexAction()
     {
+
         $this->denyAccessUnlessGranted('ROLE_USER');
         /*$em = $this->getDoctrine()->getManager();
 
@@ -49,60 +50,46 @@ class UserController extends Controller
         $user = $userManager->createUser();
         $formNew = $this->createForm('AppBundle\Form\UserType', $user);
 
-        //$form->submit($request);
         $formNew->handleRequest($request);
         $user =$formNew->getdata();
-        //var_dump($form->getdata());
-        //var_dump($form->get('username'));
-        //$user->setUsername($request->get('username'));
-        /*$user->setUsername('john4');
-        $user->setEmail('john6.doe@example.com');
-
-        $userManager->updateUser($user);*/
-        //var_dump($form->getdata());
+        $erreur=3;
+        $erreurUti=3;
         if($formNew->isSubmitted()&& $formNew->isValid()) {
             $user->setUsername($formNew["username"]->getData());
             $user->setPassword('test');
-            var_dump($formNew["username"]->getData());
+            //var_dump($formNew["username"]->getData());
             $exists = $userManager->findUserBy(array('email' => $user->getEmail()));
             if ($exists instanceof User) {
-                throw new HttpException(409, 'Email already taken');
+
+                $erreur=0;
+                //throw new HttpException(409, 'Email already taken');
+            }else
+                {
+                    $erreur=1;
+                }
+            $exists = $userManager->findUserBy(array('username' => $user->getUsername()));
+            if ($exists instanceof User) {
+
+                $erreurUti=0;
+                //throw new HttpException(409, 'Email already taken');
+            }else
+            {
+                if($erreur !=0){
+
+                    $erreurUti=1;
+                    $userManager->updateUser($user);
+                }
             }
-            $userManager->updateUser($user);
+
+
         }
 
             return $this->render('user/new.html.twig', array(
                 'user' => $user,
                 'form' => $formNew->createView(),
+                'error'=> $erreur,
+                'errorUti'=> $erreurUti,
             ));
-//
-        /*$this->denyAccessUnlessGranted('ROLE_USER');
-        $user = new User();
-        $form = $this->createForm('AppBundle\Form\UserType', $user);
-        //$form = $this->createForm('vendor\friendsofsymfony\user-bundle\Form\Type\RegistrationFormType', $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
-        }*/
-
-        /*  $user = new User();
-            $form = $this->createForm(new RegistrationType(), $user);
-            $form->submit($request);
-            if($form->isValid()) {
-                $userManager = $this->get('fos_user.user_manager');
-                $exists = $userManager->findUserBy(array('email' => $user->getEmail()));
-                if ($exists instanceof User) {
-                    throw new HttpException(409, 'Email already taken');
-                }
-                $userManager->updateUser($user);
-             }
-
-         * */
     }
 
     /**
@@ -153,19 +140,22 @@ class UserController extends Controller
     /**
      * Deletes a user entity.
      *
-     * @Route("/{id}", name="user_delete")
+     * @Route("/{id}/del", name="user_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, User $user)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $form = $this->createDeleteForm($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //var_dump($form);
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
+            //$this->get('session')->getFlashBag()->add('msg', array('alert' => 'success', 'message' => 'Utilisateur supprimé avec succès!'));
+
         }
 
         return $this->redirectToRoute('user_index');
@@ -176,15 +166,52 @@ class UserController extends Controller
      *
      * @param User $user The user entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return \Symfony\Component\Form\FormInterface
      */
-    private function createDeleteForm(\FOS\UserBundle\Model\User $user)
+
+        private function createDeleteForm(\FOS\UserBundle\Model\User $user)//\FOS\UserBundle\Model\User $user)
+        {
+            $this->denyAccessUnlessGranted('ROLE_USER');
+
+            return $this->createFormBuilder()
+                ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
+                ->setMethod('DELETE')
+                ->getForm();
+        }
+    /**
+     * Displays a form to change password of an existing User entity.
+     * @Route("/{id}/password/", name="admin_user_password")
+     * @Method({"GET", "POST"})
+     */
+    public function changePasswordAction(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:User')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        $formFactory = $this->container->get('fos_user.change_password.form.factory');
+
+        $form = $formFactory->createForm();
+        $form->remove('current_password');
+        $form->setData($entity);
+
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $userManager = $this->container->get('fos_user.user_manager');
+                $userManager->updateUser($entity);
+
+                return $this->redirect($this->generateUrl('admin_user'));
+            }
+        }
+
+        return array(
+            'entity'      => $entity,
+            'form'   => $form->createView(),
+        );
     }
+
 }

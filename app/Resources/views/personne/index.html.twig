@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Personnes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Biographie</th>
+                <th>Photo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for personne in personnes %}
+            <tr>
+                <td><a href="{{ path('admin_personne_show', { 'id': personne.id }) }}">{{ personne.id }}</a></td>
+                <td>{{ personne.nom }}</td>
+                <td>{{ personne.prenom }}</td>
+                <td>{{ personne.biographie }}</td>
+                <td>
+                    {{ personne.photo }}
+
+                    <img src="{{ asset('uploads/images/'~personne.photo) }}" />
+                    <img src="{{ asset('/SiteMons/web/uploads/images/'~personne.photo) }}" />
+                    {% if not personne.photo is empty %}
+                        <img src=" {{ asset('web/uploads/') }}{{ personne.photo }}" />
+                        <img src=" {{ asset('uploads/') }}{{ personne.photo }}" style="width: 50px;height:50px" />
+                    {% endif %}
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_personne_show', { 'id': personne.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_personne_edit', { 'id': personne.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_personne_new') }}">Create a new personne</a>
+        </li>
+    </ul>
+{% endblock %}

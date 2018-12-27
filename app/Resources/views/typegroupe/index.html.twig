@@ -1,0 +1,41 @@
+{% trans_default_domain 'FOSUserBundle'%}
+{% extends 'base.html.twig' %}
+{% block title %}Liste des types de groupes{% endblock %}
+{% block body %}
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center"><h1>Liste des types de groupes</h1></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>#Id</th>
+                                <th>Libelle</th>
+                                <th>Afficher</th>
+                                <th>Modifier</th>
+                            </tr>
+                            {% for typeGroupe in typeGroupes %}
+                                <tr>
+                                    <td><a href="{{ path('typegroupe_show', { 'id': typeGroupe.id }) }}">{{ typeGroupe.id }}</a></td>
+                                    <td>{{ typeGroupe.libelle }}</td>
+                                    <td> <a class="btn btn-primary " type="button" href="{{ path('typegroupe_show', { 'id': typeGroupe.id }) }}" >Afficher</a></td>
+                                    <td> <a class="btn btn-primary " type="button" href="{{ path('typegroupe_edit', { 'id': typeGroupe.id }) }}" >Modifier</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('typegroupe_new') }}" >Créer un Type Groupe</a>
+                        <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('menuAdmin') }}" >Retour</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
+        </div>
+    </div>
+{% endblock %}

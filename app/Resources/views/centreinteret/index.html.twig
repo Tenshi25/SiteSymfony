@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Centreinterets list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for centreInteret in centreInterets %}
+            <tr>
+                <td><a href="{{ path('admin_centreinteret_show', { 'id': centreInteret.id }) }}">{{ centreInteret.id }}</a></td>
+                <td>{{ centreInteret.titre }}</td>
+                <td>{{ centreInteret.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_centreinteret_show', { 'id': centreInteret.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_centreinteret_edit', { 'id': centreInteret.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_centreinteret_new') }}">Create a new centreInteret</a>
+        </li>
+    </ul>
+{% endblock %}
