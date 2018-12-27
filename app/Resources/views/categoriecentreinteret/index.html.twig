@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Categoriecentreinterets list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libcat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorieCentreInteret in categorieCentreInterets %}
+            <tr>
+                <td><a href="{{ path('admin_categoriecentreinteret_show', { 'id': categorieCentreInteret.id }) }}">{{ categorieCentreInteret.id }}</a></td>
+                <td>{{ categorieCentreInteret.libCat }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_categoriecentreinteret_show', { 'id': categorieCentreInteret.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_categoriecentreinteret_edit', { 'id': categorieCentreInteret.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_categoriecentreinteret_new') }}">Create a new categorieCentreInteret</a>
+        </li>
+    </ul>
+{% endblock %}

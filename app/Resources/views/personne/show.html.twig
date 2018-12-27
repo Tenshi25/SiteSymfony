@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Personne</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ personne.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ personne.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ personne.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Biographie</th>
+                <td>{{ personne.biographie }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ personne.photo }}</td>
+                {% if not personne.photo is empty %}
+                    <img src=" {{ asset('uploads/') }}{{ personne.photo }}" />
+                    <img src=" {{ asset('images/') }}{{ personne.photo }}" style="width: 50px;height:50px" />
+                    <img src="{{ asset('uploads/images/'~personne.photo) }}" />
+                    <img src="{{ asset('/SiteMons/web/uploads/images/'~personne.photo) }}" />
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_personne_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_personne_edit', { 'id': personne.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

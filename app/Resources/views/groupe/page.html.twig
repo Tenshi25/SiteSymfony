@@ -1,0 +1,57 @@
+{% trans_default_domain 'FOSUserBundle'%}
+{% extends 'base.html.twig' %}
+{% block title %}Liste Utilisateurs{% endblock %}
+{% block body %}
+<div class="container" style="margin-top :10px">
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-xs-1 col-sm-1"></div>
+        <div class="col-xs-10 col-sm-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center"><h1>Liste des groupes</h1></div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+
+                            {% for groupe in groupes %}
+                                <tbody>
+                                    <thead>
+                                    <tr>
+
+                                        <th>{{ groupe.nom }}</th>
+                                        <th>{{ groupe.typeGroup.libelle }}</th>
+
+                                    </tr>
+
+                                    </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Nom</td>
+                                    <td>Prenom</td>
+                                    <td>Statut</td>
+                                </tr>
+                                {% for statut in groupe.personneStatuts %}
+                                    <tr>
+                                        <td>{{statut.personne.nom}} </td>
+                                        <td>{{statut.personne.prenom}}</td>
+                                        <td>{{statut.statut.nom}}</td>
+                                    </tr>
+
+                                {% endfor %}
+                                <tr>
+
+
+
+                                </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1"></div>
+    </div>
+</div>
+{% endblock %}

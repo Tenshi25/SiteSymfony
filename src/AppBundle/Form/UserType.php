@@ -30,9 +30,9 @@ class UserType extends AbstractType
                         'ROLE_ADMIN' => 'ROLE_ADMIN',
                         'ROLE_USER' => 'ROLE_USER'
                     ) ,
+                'expanded'=> false,
                 'multiple' => true,
                 'required' => true,
-                'expanded' => false,
             )
         );
         $builder->remove('plainPassword');
