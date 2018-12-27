@@ -18,4 +18,14 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+     * @Route("/SiteMons", name="accueil")
+     */
+    public function AccueilAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        return $this->render('visiteur/accueil.html.twig');
+    }
 }

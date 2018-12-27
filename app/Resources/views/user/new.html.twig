@@ -1,0 +1,27 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container" style="margin-top :10px">
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-xs-1 col-sm-1"></div>
+        <div class="col-xs-10 col-sm-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center"><h1>User creation</h1></div>
+                <div class="panel-body">
+                    {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Créer" >
+                    {{ form_end(form) }}
+
+                    <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('user_index') }}" >Retour à la liste</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1"></div>
+    </div>
+</div>
+{% endblock %}
