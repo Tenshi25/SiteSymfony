@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Themepages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libtheme</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for themePage in themePages %}
+            <tr>
+                <td><a href="{{ path('admin_themepage_show', { 'id': themePage.id }) }}">{{ themePage.id }}</a></td>
+                <td>{{ themePage.libTheme }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_themepage_show', { 'id': themePage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_themepage_edit', { 'id': themePage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_themepage_new') }}">Create a new themePage</a>
+        </li>
+    </ul>
+{% endblock %}
