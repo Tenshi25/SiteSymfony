@@ -41,6 +41,16 @@ class AdminController extends Controller
         $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('MenuAdmin/menuGroupe.html.twig');
     }
+    /**
+     * @Route("/admin/menu/Page", name="menuPage")
+     */
+    public function MenuPageAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        //$this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        return $this->render('MenuAdmin/menuPage.html.twig');
+    }
 
 
 

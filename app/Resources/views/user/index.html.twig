@@ -8,8 +8,8 @@
     <div class="row">
         <div class="col-xs-1 col-sm-1"></div>
         <div class="col-xs-10 col-sm-10">
-            <div class="panel panel-primary">
-                <div class="panel-heading text-center"><h1>Liste d'utilisateur</h1></div>
+            <div class="panel panel-danger">
+                <div class="panel-heading text-center"><h2>Liste d'utilisateur</h2></div>
                     <div class="panel-body">
                         <table class="table table-striped">
                             <tbody>
@@ -32,14 +32,14 @@
                                             {{ role }}
                                         {% endfor %}
                                     </td>
-                                    <td> <a class="btn btn-primary " type="button" href="{{ path('user_show', { 'id': user.id }) }}" >Afficher</a></td>
-                                    <td> <a class="btn btn-primary " type="button" href="{{ path('user_edit', { 'id': user.id }) }}" >Modifier</a></td>
+                                    <td> <a class="btn btn-danger " type="button" href="{{ path('user_show', { 'id': user.id }) }}" >Afficher</a></td>
+                                    <td> <a class="btn btn-danger " type="button" href="{{ path('user_edit', { 'id': user.id }) }}" >Modifier</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
-                        <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('user_new') }}" >Créer un Utilisateur</a>
-                        <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('menuAdmin') }}" >Retour</a>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('user_new') }}" >Créer un Utilisateur</a>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('menuAdmin') }}" >Retour</a>
                     </div>
 
             </div>

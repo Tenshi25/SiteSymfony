@@ -1,57 +1,31 @@
-{% trans_default_domain 'FOSUserBundle'%}
+{% trans_default_domain 'FOSUserBundle' %}
 {% extends 'base.html.twig' %}
 {% block title %}Liste Utilisateurs{% endblock %}
 {% block body %}
-<div class="container" style="margin-top :10px">
-    <div class="row">
-    </div>
-    <div class="row">
-        <div class="col-xs-1 col-sm-1"></div>
-        <div class="col-xs-10 col-sm-10">
-            <div class="panel panel-primary">
-                <div class="panel-heading text-center"><h1>Liste des groupes</h1></div>
-                <div class="panel-body">
-                    <table class="table table-striped">
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="jumbotron" style="border-style:solid; border-color: grey; background-color: white">
+                    <h2>Liste des Commissions</h2>
 
-                            {% for groupe in groupes %}
-                                <tbody>
-                                    <thead>
-                                    <tr>
-
-                                        <th>{{ groupe.nom }}</th>
-                                        <th>{{ groupe.typeGroup.libelle }}</th>
-
-                                    </tr>
-
-                                    </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Nom</td>
-                                    <td>Prenom</td>
-                                    <td>Statut</td>
-                                </tr>
-                                {% for statut in groupe.personneStatuts %}
-                                    <tr>
-                                        <td>{{statut.personne.nom}} </td>
-                                        <td>{{statut.personne.prenom}}</td>
-                                        <td>{{statut.statut.nom}}</td>
-                                    </tr>
-
-                                {% endfor %}
-                                <tr>
-
-
-
-                                </tr>
-
+                    {% for groupe in groupes %}
+                        <h3>{{ groupe.nom }} : </h3>
+                        <hr>
+                        <p>
+                            {% for statut in groupe.personneStatuts %}
+                                {{ statut.personne.nom }}
+                                {{ statut.personne.prenom }}
+                                {{ statut.statut.nom }},
                             {% endfor %}
-                        </tbody>
-                    </table>
+                        </p>
+                    {% endfor %}
                 </div>
 
             </div>
         </div>
         <div class="col-xs-1 col-sm-1"></div>
     </div>
-</div>
 {% endblock %}

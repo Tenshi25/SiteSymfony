@@ -1,50 +1,48 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ personne.nom }} {{ personne.prenom }}{% endblock %}
 {% block body %}
-    <h1>Personne</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ personne.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ personne.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ personne.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Biographie</th>
-                <td>{{ personne.biographie }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ personne.photo }}</td>
-                {% if not personne.photo is empty %}
-                    <img src=" {{ asset('uploads/') }}{{ personne.photo }}" />
-                    <img src=" {{ asset('images/') }}{{ personne.photo }}" style="width: 50px;height:50px" />
-                    <img src="{{ asset('uploads/images/'~personne.photo) }}" />
-                    <img src="{{ asset('/SiteMons/web/uploads/images/'~personne.photo) }}" />
-                {% endif %}
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_personne_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_personne_edit', { 'id': personne.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center"><h2>{{ personne.nom }} {{ personne.prenom }}</h2></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Biographie</th>
+                                <th>Photo</th>
+                                <th>Modifier</th>
+                                <th>Supprimer</th>
+                            </tr>
+                            <tr>
+                                <td>{{ personne.id }}</td>
+                                <td>{{ personne.nom }}</td>
+                                <td>{{ personne.prenom }}</td>
+                                <td>{{ personne.biographie }}</td>
+                                <td>{{ personne.photo }}</td>
+                                {% if not personne.photo is empty %}
+                                    <img src=" {{ asset('uploads/') }}{{ personne.photo }}"/>
+                                {% endif %}
+                                <td><a class="btn btn-danger" type="button"
+                                       href="{{ path('admin_personne_edit', { 'id': personne.id }) }}">Modifier</a></td>
+                                <td> {{ form_start(delete_form) }}
+                                    <input class="btn btn-danger" type="submit" value="Supprimer">
+                                    {{ form_end(delete_form) }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a class="btn btn-danger btn-lg btn-block" type="button"
+                           href="{{ path('admin_personne_index') }}">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
+        </div>
+    </div>
 {% endblock %}

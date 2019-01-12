@@ -195,5 +195,9 @@ class Personne
         return $this->photo;
     }
 
+    public function getNomPrenom(){
+        $string = $this->nom." ".$this->prenom;
+        return $string;
+    }
 }
 

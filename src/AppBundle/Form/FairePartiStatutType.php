@@ -21,7 +21,7 @@ class FairePartiStatutType extends AbstractType
             'multiple'=>false))
             ->add('personne', EntityType::class, array(
                 'class'=>'AppBundle\Entity\Personne',
-                'choice_label'=>'nom',
+                'choice_label'=>'NomPrenom',
                 'expanded'=> false,
                 'multiple'=>false
             ))

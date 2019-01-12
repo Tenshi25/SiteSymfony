@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\CentreInteret;
+use AppBundle\Entity\Photo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -70,6 +71,29 @@ class CentreInteretController extends Controller
         return $this->render('centreinteret/show.html.twig', array(
             'centreInteret' => $centreInteret,
             'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    /**
+     * Finds and displays a centreInteret entity.
+     *
+     * @Route("/{id}/centre d'interêt", name="centreinteret_voirPlus")
+     * @Method("GET")
+     */
+    public function voirPlusAction(CentreInteret $centreInteret)
+    {
+        /*$em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('p')
+            ->from('photo', 'p')
+            ->where('p.id = :id_photo')
+            ->orderBy('p.titre', 'ASC')
+            ->setParameter('id_photo', $centreInteret->getId());
+
+        $query = $qb->getQuery();*/
+        //$listePhoto = $query->getResult();
+        return $this->render('centreinteret/page.html.twig', array(
+            'centreInteret' => $centreInteret,
+            'listePhoto' => $centreInteret->getPhotos(),
         ));
     }
 

@@ -1,22 +1,30 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Modifier les information d'une personne{% endblock %}
 {% block body %}
-    <h1>Personne edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_personne_index') }}">Back to the list</a>
-            <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('menuAdmin') }}" >Retour</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-danger" style="border-color:black;">
+                    <div class="panel-heading text-center" style="background-image:linear-gradient(to bottom,#b92c28 0,#b92c28 100%);"><h2>Modifier les informations d'une personne</h2></div>
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                        {{ form_widget(edit_form) }}
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="col-xs-6 col-sm-6">
+                                <input class="btn btn-danger btn-lg btn-block" type="submit" value="Modifier"/>
+                            </div>
+                            {{ form_end(edit_form) }}
+                            <div class="col-xs-6 col-sm-6">
+                                <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('admin_personne_index') }}">Retour à la liste</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1"></div>
+    </div>
 {% endblock %}

@@ -1,36 +1,39 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}photo {{ photo.titre }}{% endblock %}
 {% block body %}
-    <h1>Photo</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ photo.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ photo.titre }}</td>
-            </tr>
-            <tr>
-                <th>Lienphoto</th>
-                <td>{{ photo.lienPhoto }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_photo_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_photo_edit', { 'id': photo.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center"><h2>Page {{ photo.titre }}</h2></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titre</th>
+                                <th>Lienphoto</th>
+                                <th>modifier</th>
+                                <th>Supprimer</th>
+                            </tr>
+                            <tr>
+                                <td>{{ photo.id }}</td>
+                                <td>{{ photo.titre }}</td>
+                                <td>{{ photo.lienPhoto }}</td>
+                                <td><a class="btn btn-danger" type="button" href="{{ path('admin_photo_edit', { 'id': photo.id }) }}">Modifier</a></td>
+                                <td> {{ form_start(delete_form) }}
+                                    <input class="btn btn-danger" type="submit" value="Supprimer">
+                                    {{ form_end(delete_form) }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('admin_photo_index') }}">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
+        </div>
+    </div>
 {% endblock %}

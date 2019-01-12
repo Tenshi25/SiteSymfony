@@ -36,13 +36,13 @@ class CentreInteret
      */
     private $description;
     /**
-     * @ORM\ManyToOne(targetEntity="CategorieCentreInteret", inversedBy="CentresInterets")
+     * @ORM\ManyToOne(targetEntity="CategorieCentreInteret", inversedBy="CentreInteret")
      * @ORM\JoinColumn(name="Categorie_id", referencedColumnName="id")
      */
     private $Categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="GroupCentresInterets")
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="CentreInteret")
      */
     private $Photos;
     public function __construct()

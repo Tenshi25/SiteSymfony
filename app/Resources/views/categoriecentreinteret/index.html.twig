@@ -1,39 +1,47 @@
+{% trans_default_domain 'FOSUserBundle' %}
 {% extends 'base.html.twig' %}
-
+{% block title %}Liste des categories de centre d'intérêts{% endblock %}
 {% block body %}
-    <h1>Categoriecentreinterets list</h1>
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center"><h2>Liste des categories de centre d'intérêts</h2></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Libcat</th>
+                                <th>Afficher</th>
+                                <th>Modifier</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for categorieCentreInteret in categorieCentreInterets %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('admin_categoriecentreinteret_show', { 'id': categorieCentreInteret.id }) }}">{{ categorieCentreInteret.id }}</a>
+                                    </td>
+                                    <td>{{ categorieCentreInteret.libCat }}</td>
+                                    <td><a class="btn btn-danger " type="button" href="{{ path('admin_categoriecentreinteret_show', { 'id': categorieCentreInteret.id }) }}">Afficher</a>
+                                    </td>
+                                    <td><a class="btn btn-danger " type="button" href="{{ path('admin_categoriecentreinteret_edit', { 'id': categorieCentreInteret.id }) }}">Modifier</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('admin_categoriecentreinteret_new') }}">Créer un Utilisateur</a>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('menuCentreInteret') }}">Retour</a>
+                    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Libcat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for categorieCentreInteret in categorieCentreInterets %}
-            <tr>
-                <td><a href="{{ path('admin_categoriecentreinteret_show', { 'id': categorieCentreInteret.id }) }}">{{ categorieCentreInteret.id }}</a></td>
-                <td>{{ categorieCentreInteret.libCat }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_categoriecentreinteret_show', { 'id': categorieCentreInteret.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_categoriecentreinteret_edit', { 'id': categorieCentreInteret.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_categoriecentreinteret_new') }}">Create a new categorieCentreInteret</a>
-        </li>
-    </ul>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
+        </div>
+    </div>
 {% endblock %}

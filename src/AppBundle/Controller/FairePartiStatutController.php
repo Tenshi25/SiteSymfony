@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\FairePartiStatut;
+use AppBundle\Entity\Groupe;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * Fairepartistatut controller.
@@ -34,13 +36,67 @@ class FairePartiStatutController extends Controller
     /**
      * Creates a new fairePartiStatut entity.
      *
-     * @Route("/new", name="admin_faire_parti_statut_new")
+     * @Route("/new/{groupe}", name="admin_faire_parti_statut_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request,Groupe $groupe)
     {
         $fairePartiStatut = new Fairepartistatut();
         $form = $this->createForm('AppBundle\Form\FairePartiStatutType', $fairePartiStatut);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($fairePartiStatut);
+            $em->flush();
+            
+            return $this->redirectToRoute('admin_groupe_show', array('id' => array('id' => $groupe->getId())));
+        }
+
+        return $this->render('fairepartistatut/new.html.twig', array(
+            'fairePartiStatut' => $fairePartiStatut,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Creates a new fairePartiStatut entity.
+     *
+     * @Route("/new/{groupe}", name="admin_fairePartiGroupe_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newGroupeAction(Request $request,groupe $groupe)
+    {
+        $fairePartiStatut = new Fairepartistatut();
+/*
+        $formulaire = $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_fairePartiGroupe_new', array('groupe' => $groupe->getId())))
+
+            ->add('personne', EntityType::class, array(
+                'class'=>'AppBundle\Entity\Personne',
+                'choice_label'=>'NomPrenom',
+                'expanded'=> false,
+                'multiple'=>false
+            ))
+            ->add('statut', EntityType::class, array(
+                'class'=>'AppBundle\Entity\Statut',
+                'choice_label'=>'nom',
+                'expanded'=> false,
+                'multiple'=>false
+            ))
+            ->getForm();
+        $formulaire->handleRequest($request);
+*/
+
+
+
+        $form = $this->createForm('AppBundle\Form\FairePartiStatutType', $fairePartiStatut);
+        //$form->remove('groupe');
+        //$form->add('groupe','AppBundle\Form\GroupeType');
+        $form->get('groupe')->setData($groupe);
+        $form->get('groupe')->isDisabled();
+        //$form->setData($groupe);
+        //$form->setParent($groupe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,7 +112,6 @@ class FairePartiStatutController extends Controller
             'form' => $form->createView(),
         ));
     }
-
     /**
      * Finds and displays a fairePartiStatut entity.
      *

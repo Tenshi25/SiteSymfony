@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center"><h2>Fromulaire d'ajout d'un theme de page </h2></div>
+                    <div class="panel-body">
+
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input type="submit" class="btn btn-danger btn-lg btn-block" value="Créer"/>
+                        {{ form_end(form) }}
+                        <a class="btn btn-danger btn-lg btn-block" type="button"
+                           href="{{ path('admin_themepage_inde') }}">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
+        </div>
+    </div>
+{% endblock %}
