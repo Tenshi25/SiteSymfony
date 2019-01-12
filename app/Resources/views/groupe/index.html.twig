@@ -1,42 +1,44 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Liste de groupes{% endblock %}
 {% block body %}
-    <h1>Groupes list</h1>
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center"><h2>Liste de groupes</h2></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>type</th>
+                                <th>Afficher</th>
+                                <th>Modifier</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for groupe in groupes %}
+                                <tr>
+                                    <td>{{ groupe.nom }}</td>
+                                    <td>{{ groupe.typeGroup.libelle }}</td>
+                                    <td><a class="btn btn-danger " type="button" href="{{ path('admin_groupe_show', { 'id': groupe.id}) }}">Afficher</a></td>
+                                    <td><a class="btn btn-danger " type="button" href="{{ path('admin_groupe_edit', { 'id': groupe.id }) }}">Modifier</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('admin_groupe_new') }}">Créer
+                            un nouveau groupe</a>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('menuAdmin') }}">Retour</a>
+                    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>type</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for groupe in groupes %}
-            <tr>
-                <td><a href="{{ path('admin_groupe_show', { 'id': groupe.id }) }}">{{ groupe.id }}</a></td>
-                <td>{{ groupe.nom }}</td>
-                <td>{{ groupe.typeGroup.libelle }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_groupe_show', { 'id': groupe.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_groupe_edit', { 'id': groupe.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('admin_groupe_new') }}" >Créer un nouveau groupe</a>
-            <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('menuAdmin') }}" >Retour</a>
-        </li>
-    </ul>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
+        </div>
+    </div>
 {% endblock %}

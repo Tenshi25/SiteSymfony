@@ -1,36 +1,43 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Centre d'intérêt {{ centreInteret.titre }}{% endblock %}
 {% block body %}
-    <h1>Centreinteret</h1>
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center"><h2>Centre d'intérêt {{ centreInteret.titre }}</h2></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titre</th>
+                                <th>Description</th>
+                                <th>Modifier</th>
+                                <th>Supprimer</th>
+                            </tr>
+                            <tr>
+                                <td>{{ centreInteret.id }}</td>
+                                <td>{{ centreInteret.titre }}</td>
+                                <td>{{ centreInteret.description }}</td>
+                                <td><a class="btn btn-danger" type="button"
+                                       href="{{ path('admin_centreinteret_edit', { 'id': centreInteret.id }) }}">Modifier</a>
+                                </td>
+                                <td> {{ form_start(delete_form) }}
+                                    <input class="btn btn-danger" type="submit" value="Supprimer">
+                                    {{ form_end(delete_form) }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a class="btn btn-danger btn-lg btn-block" type="button"
+                           href="{{ path('admin_centreinteret_index') }}">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ centreInteret.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ centreInteret.titre }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ centreInteret.description }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_centreinteret_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_centreinteret_edit', { 'id': centreInteret.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
 {% endblock %}

@@ -1,41 +1,47 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Liste de statuts{% endblock %}
 {% block body %}
-    <h1>Statuts list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Ordre</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for statut in statuts %}
-            <tr>
-                <td><a href="{{ path('admin_statut_show', { 'id': statut.id }) }}">{{ statut.id }}</a></td>
-                <td>{{ statut.nom }}</td>
-                <td>{{ statut.ordre }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_statut_show', { 'id': statut.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_statut_edit', { 'id': statut.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_statut_new') }}">Create a new statut</a>
-        </li>
-    </ul>
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center"><h2>Liste de statuts</h2></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Ordre</th>
+                                <th>Afficher</th>
+                                <th>Modifier</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for statut in statuts %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('admin_statut_show', { 'id': statut.id }) }}">{{ statut.id }}</a>
+                                    </td>
+                                    <td>{{ statut.nom }}</td>
+                                    <td>{{ statut.ordre }}</td>
+                                    <td><a class="btn btn-danger " type="button" href="{{ path('admin_statut_show', { 'id': statut.id  }) }}">Afficher</a>
+                                    </td>
+                                    <td><a class="btn btn-danger " type="button" href="{{ path('admin_statut_edit', { 'id': statut.id   }) }}">Modifier</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('admin_statut_new') }}">Créer un statut</a>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('menuAdmin') }}">Retour</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
+        </div>
+    </div>
 {% endblock %}

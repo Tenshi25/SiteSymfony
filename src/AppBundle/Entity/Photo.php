@@ -31,15 +31,67 @@ class Photo
     /**
      * @var string
      *
-     * @ORM\Column(name="lienPhoto", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lienPhoto", type="string", length=255, nullable=true)
+     * Assert\NotBlank(message="Ajouter une photo")
+     * Assert\Image()
      */
     private $lienPhoto;
 
     /**
      * @ORM\ManyToOne(targetEntity="CentreInteret", inversedBy="Photos")
-     * @ORM\JoinColumn(name="Categorie_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="centreInteret_id", referencedColumnName="id")
      */
-    private $GroupCentresInterets;
+    private $CentreInteret;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Page", inversedBy="Photos")
+     * @ORM\JoinColumn(name="GroupPages_id", referencedColumnName="id")
+     */
+    private $GroupPages;
+
+    /*
+    * @Assert\File(maxSize="500k")
+    */
+    public $file;
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCentreInteret()
+    {
+        return $this->CentreInteret;
+    }
+
+    /**
+     * @param mixed $CentreInteret
+     */
+    public function setCentreInteret($CentreInteret)
+    {
+        $this->CentreInteret = $CentreInteret;
+    }
     /**
      * Get id
      *
@@ -48,6 +100,22 @@ class Photo
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLienPhoto()
+    {
+        return $this->lienPhoto;
+    }
+
+    /**
+     * @param string $lienPhoto
+     */
+    public function setLienPhoto($lienPhoto)
+    {
+        $this->lienPhoto = $lienPhoto;
     }
 
     /**
@@ -75,27 +143,39 @@ class Photo
     }
 
     /**
-     * Set lienPhoto
-     *
-     * @param string $lienPhoto
-     *
-     * @return Photo
+     * @return mixed
      */
-    public function setLienPhoto($lienPhoto)
+    public function getGroupPages()
     {
-        $this->lienPhoto = $lienPhoto;
-
-        return $this;
+        return $this->GroupPages;
     }
 
     /**
-     * Get lienPhoto
-     *
-     * @return string
+     * @param mixed $GroupPages
      */
-    public function getLienPhoto()
+    public function setGroupPages($GroupPages)
     {
-        return $this->lienPhoto;
+        $this->GroupPages = $GroupPages;
+    }
+
+    public function getUploadWebpath()
+    {
+        return null===$this->lienPhoto ? null : $this->getUploadDir().'/'.$this->lienPhoto;
+    }
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+    protected function getUploadDir()
+    {
+        return 'uploads';
+    }
+
+    public function uploadProfilePicture()
+    {
+        $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
+        $this->photo=$this->file->getClientOriginalName();
+        $this->file=null;
     }
 }
 

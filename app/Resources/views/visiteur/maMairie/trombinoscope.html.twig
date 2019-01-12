@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="jumbotron" style="border-style:solid; border-color: darkgray; background-color: white">
+                    <h2>Trombinoscope</h2><hr>
+
+                    {% for unStatut in listeStatus %}
+                        <div class="row">
+                            {% for unePersonne in conseilMunicipal.PersonneStatuts %}
+                                {% if unePersonne.statut.ordre == unStatut.ordre %}
+                                    <div class="col-xs-2 col-sm-3">
+                                        <div class="panel panel-danger">
+                                            <div class="panel-body">
+                                                <img src=" {{ asset('uploads/') }}{{ unePersonne.personne.photo }}"
+                                                     class="img-circle" alt="Responsive image"
+                                                     style="height: 100px ;width: 100px; "/>
+                                                <hr>
+                                                {{ unePersonne.personne.nom }}
+                                                {{ unePersonne.personne.prenom }} :
+                                                {{ unePersonne.statut.nom }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                            {% else %}
+                                <li><em>Il y a personne dans le Conseil Municipal</em></li>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
+
+        </div>
+
+    </div>
+{% endblock %}

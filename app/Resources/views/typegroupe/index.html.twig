@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col-xs-1 col-sm-1"></div>
             <div class="col-xs-10 col-sm-10">
-                <div class="panel panel-primary">
-                    <div class="panel-heading text-center"><h1>Liste des types de groupes</h1></div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center"><h2>Liste des types de groupes</h2></div>
                     <div class="panel-body">
                         <table class="table table-striped">
                             <tbody>
@@ -23,14 +23,14 @@
                                 <tr>
                                     <td><a href="{{ path('typegroupe_show', { 'id': typeGroupe.id }) }}">{{ typeGroupe.id }}</a></td>
                                     <td>{{ typeGroupe.libelle }}</td>
-                                    <td> <a class="btn btn-primary " type="button" href="{{ path('typegroupe_show', { 'id': typeGroupe.id }) }}" >Afficher</a></td>
-                                    <td> <a class="btn btn-primary " type="button" href="{{ path('typegroupe_edit', { 'id': typeGroupe.id }) }}" >Modifier</a></td>
+                                    <td> <a class="btn btn-danger " type="button" href="{{ path('typegroupe_show', { 'id': typeGroupe.id }) }}" >Afficher</a></td>
+                                    <td> <a class="btn btn-danger " type="button" href="{{ path('typegroupe_edit', { 'id': typeGroupe.id }) }}" >Modifier</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
-                        <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('typegroupe_new') }}" >Créer un Type Groupe</a>
-                        <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('menuAdmin') }}" >Retour</a>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('typegroupe_new') }}" >Créer un Type Groupe</a>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('menuAdmin') }}" >Retour</a>
                     </div>
 
                 </div>

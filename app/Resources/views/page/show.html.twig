@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}Page {{ page.titre }}{% endblock %}
+{% block body %}
+    <div class="container" style="margin-top :10px">
+        <div class="row">
+            <div class="col-xs-1 col-sm-1"></div>
+            <div class="col-xs-10 col-sm-10">
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center"><h2>Page {{ page.titre }}</h2></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titre</th>
+                                <th>Description</th>
+                                <th>Modifier</th>
+                                <th>Supprimer</th>
+                            </tr>
+                            <tr>
+                                <td>{{ page.id }}</td>
+                                <td>{{ page.titre }}</td>
+                                <td>{{ page.description }}</td>
+                                <td><a class="btn btn-danger" type="button" href="{{ path('admin_page_edit', { 'id': page.id }) }}">Modifier</a></td>
+                                <td> {{ form_start(delete_form) }}
+                                    <input class="btn btn-danger" type="submit" value="Supprimer">
+                                    {{ form_end(delete_form) }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('admin_page_index') }}">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1"></div>
+
+        </div>
+    </div>
+{% endblock %}

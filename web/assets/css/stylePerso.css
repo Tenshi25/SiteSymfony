@@ -1,0 +1,3 @@
+.container .jumbotron, .container-fluid .jumbotron .jumbotron {
+    background-color: white !important;
+}

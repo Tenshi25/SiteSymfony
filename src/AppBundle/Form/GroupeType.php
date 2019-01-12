@@ -39,6 +39,5 @@ class GroupeType extends AbstractType
     {
         return 'appbundle_groupe';
     }
-
-
+    
 }
