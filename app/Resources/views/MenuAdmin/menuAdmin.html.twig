@@ -7,34 +7,34 @@
         <div class="row">
             <div class="col-xs-2 col-sm-2"></div>
             <div class="col-xs-8 col-sm-8">
-                <div class="panel panel-primary">
+                <div class="panel my-panel">
                     <div class="panel-heading text-center">Menu</div>
-                    <div class="panel-body">
+                    <div class="panel-body my-panel-body">
                         <div class="form-group">
-                            <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('user_index') }}">Gerer
+                            <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('user_index') }}">Gerer
                                 les Comptes Administrateurs</a>
                         </div>
                         <div class="form-group">
-                            <a class="btn btn-primary btn-lg btn-block" type="button"
+                            <a class="btn btn-danger btn-lg btn-block" type="button"
                                href="{{ path('menuAdminCentreInteret') }}">Gérer les Centres d'intérets</a>
                         </div>
                         <div class="form-group">
-                            <a class="btn btn-primary btn-lg btn-block" type="button"
+                            <a class="btn btn-danger btn-lg btn-block" type="button"
                                href="{{ path('menuAdminGroupe') }}">Gerer les Groupes</a>
                         </div>
                         <div class="form-group">
-                            <a class="btn btn-primary btn-lg btn-block" type="button"
+                            <a class="btn btn-danger btn-lg btn-block" type="button"
                                href="{{ path('menuPage') }}">Gerer les Pages</a>
                         </div>
                         {% if app.user %}
                             <div class="form-group">
-                                <a class="btn btn-primary btn-lg btn-block" type="button"
+                                <a class="btn btn-danger btn-lg btn-block" type="button"
                                    href="{{ path('admin_user_password', { 'id': app.user.id }) }}">Changer son mot de
                                     passe</a>
                             </div>
                         {% endif %}
                         <div class="form-group">
-                            <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ path('accueil') }}">Retour
+                            <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('accueil') }}">Retour
                                 à l'accueil</a>
                         </div>
                     </div>

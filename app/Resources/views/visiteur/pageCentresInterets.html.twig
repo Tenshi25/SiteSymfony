@@ -2,13 +2,14 @@
 {% block body %}
     <div class="container" style="margin-top :10px">
 
-            <nav class="navbar navbar-default">
-                {{ render(controller('AppBundle:Default:search')) }}
-            </nav>
+
             <div class="row">
                 <div class="col-xs-1 col-sm-1"></div>
                 <div class="col-xs-10 col-sm-10">
-                    <div class="jumbotron">
+                    <div class="jumbotron myJubotron">
+                        <nav class="navbar navbar-default">
+                            {{ render(controller('AppBundle:Default:search')) }}
+                        </nav>
                     <h1>Liste des centres d'intérêts</h1>
                     <hr>
                     {% for unCatCentreInteret in categoriesCentreInteret %}
@@ -20,9 +21,9 @@
                                         <hr>
                                         {% for unePhoto in unCentreInteret.photos %}
                                             {% if unePhoto.type == "photoPreview"  %}
-                                                <div class="panel panel" style="border-color: black; ">
+                                                <div class="panel panel-centreInteret">
                                                     <div class="panel-body"  >
-                                                        <a href="{{ path('centreinteret_voirPlus', { 'id': unCentreInteret.id }) }}"><img src=" {{ asset('uploads/') }}{{ unePhoto.lienPhoto }}" title="{{ unCentreInteret.titre}}" class="img-circle" alt="Responsive image" style="height: 100px ;width: 100px;border-color: black; " />
+                                                        <a href="{{ path('centreinteret_voirPlus', { 'id': unCentreInteret.id }) }}"><img src=" {{ asset('uploads/') }}{{ unePhoto.lienPhoto }}" title="{{ unCentreInteret.titre}}" class="img-circle" alt="Responsive image"  />
                                                             <hr>
                                                             <!--{{ unCentreInteret.titre }}-->
                                                         </a>

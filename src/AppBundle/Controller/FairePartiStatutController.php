@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\FairePartiStatut;
 use AppBundle\Entity\Groupe;
+use AppBundle\Entity\TypeGroupe;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -164,13 +165,13 @@ class FairePartiStatutController extends Controller
         $form = $this->createDeleteForm($fairePartiStatut);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        /*if ($form->isSubmitted() && $form->isValid()) {*/
             $em = $this->getDoctrine()->getManager();
             $em->remove($fairePartiStatut);
             $em->flush();
-        }
+       // }
 
-        return $this->redirectToRoute('admin_faire_parti_statut_index');
+        return $this->redirectToRoute('admin_groupe_index' );
     }
 
     /**

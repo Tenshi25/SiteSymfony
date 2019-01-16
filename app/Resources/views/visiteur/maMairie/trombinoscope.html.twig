@@ -2,37 +2,42 @@
 {% block body %}
     <div class="container" style="margin-top :10px">
         <div class="row">
-        </div>
-        <div class="row">
             <div class="col-xs-1 col-sm-1"></div>
             <div class="col-xs-10 col-sm-10">
                 <div class="jumbotron" style="border-style:solid; border-color: darkgray; background-color: white">
-                    <h2>Trombinoscope</h2><hr>
-
+                    <div class="panel my-panel">
+                        <div class="panel-body">
+                            <h2 class="align-center">Trombinoscope</h2>
+                        </div>
+                    </div>
+                        <hr>
+                    {% if conseilMunicipal.PersonneStatuts is not empty %}
                     {% for unStatut in listeStatus %}
                         <div class="row">
-                            {% for unePersonne in conseilMunicipal.PersonneStatuts %}
-                                {% if unePersonne.statut.ordre == unStatut.ordre %}
-                                    <div class="col-xs-2 col-sm-3">
-                                        <div class="panel panel-danger">
-                                            <div class="panel-body">
-                                                <img src=" {{ asset('uploads/') }}{{ unePersonne.personne.photo }}"
-                                                     class="img-circle" alt="Responsive image"
-                                                     style="height: 100px ;width: 100px; "/>
-                                                <hr>
-                                                {{ unePersonne.personne.nom }}
-                                                {{ unePersonne.personne.prenom }} :
-                                                {{ unePersonne.statut.nom }}
+
+                                {% for unePersonne in conseilMunicipal.PersonneStatuts %}
+                                    {% if unePersonne.statut.ordre == unStatut.ordre %}
+                                        <div class="col-xs-2 col-sm-3">
+                                            <div class="panel panel-centreInteret">
+                                                <div class="panel-body">
+                                                    <img src=" {{ asset('uploads/') }}{{ unePersonne.personne.photo }}"
+                                                         class="img-responsive img-circle" alt="Responsive image"  />
+                                                    <hr>
+                                                    {{ unePersonne.personne.nom }}
+                                                    {{ unePersonne.personne.prenom }} :
+                                                    {{ unePersonne.statut.nom }}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endif %}
+                                    {% endif %}
+                                {% endfor %}
 
-                            {% else %}
-                                <li><em>Il y a personne dans le Conseil Municipal</em></li>
-                            {% endfor %}
+
                         </div>
                     {% endfor %}
+                {% else %}
+                    <li><em>Il y a personne dans le Conseil Municipal</em></li>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1"></div>

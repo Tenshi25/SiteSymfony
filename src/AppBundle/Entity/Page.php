@@ -325,5 +325,101 @@ class Page
         $this->paragraphe3 = $paragraphe3;
     }
 
+    /**
+     * @return string
+     */
+    public function getSousTitre4()
+    {
+        return $this->sousTitre4;
+    }
+
+    /**
+     * @param string $sousTitre4
+     */
+    public function setSousTitre4($sousTitre4)
+    {
+        $this->sousTitre4 = $sousTitre4;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParagraphe4()
+    {
+        return $this->paragraphe4;
+    }
+
+    /**
+     * @param string $paragraphe4
+     */
+    public function setParagraphe4($paragraphe4)
+    {
+        $this->paragraphe4 = $paragraphe4;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSousTitre5()
+    {
+        return $this->sousTitre5;
+    }
+
+    /**
+     * @param string $sousTitre5
+     */
+    public function setSousTitre5($sousTitre5)
+    {
+        $this->sousTitre5 = $sousTitre5;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParagraphe5()
+    {
+        return $this->paragraphe5;
+    }
+
+    /**
+     * @param string $paragraphe5
+     */
+    public function setParagraphe5($paragraphe5)
+    {
+        $this->paragraphe5 = $paragraphe5;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSousTitre6()
+    {
+        return $this->sousTitre6;
+    }
+
+    /**
+     * @param string $sousTitre6
+     */
+    public function setSousTitre6($sousTitre6)
+    {
+        $this->sousTitre6 = $sousTitre6;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParagraphe6()
+    {
+        return $this->paragraphe6;
+    }
+
+    /**
+     * @param string $paragraphe6
+     */
+    public function setParagraphe6($paragraphe6)
+    {
+        $this->paragraphe6 = $paragraphe6;
+    }
+
 }
 

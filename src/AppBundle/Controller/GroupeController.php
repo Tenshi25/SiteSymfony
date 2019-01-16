@@ -92,7 +92,7 @@ class GroupeController extends Controller
             $em->persist($fairePartiStatut);
             $em->flush();
 
-            return $this->redirectToRoute('groupe/show.html.twig', array('id' => $groupe->getId()));
+            return $this->redirectToRoute('admin_groupe_show', array('id' => $groupe->getId()));
         }
 
         return $this->render('groupe/show.html.twig', array(

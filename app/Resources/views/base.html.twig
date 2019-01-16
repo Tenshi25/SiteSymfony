@@ -6,26 +6,50 @@
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
     <body>
-        <nav class="navbar navbar-inverse">
-            <p class="navbar-text">Site de Mons</p>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ path('accueil') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Accueil<span class="sr-only" >(current)</span></a></li>
-                    <li><a href="{{ path('PageGroupe') }}">groupes</a></li>
-                    <li><a href="{{ path('PageCentreInteret') }}">Centre d'intéret</a></li>
-                    <li><a href="{{ path('PageTrombinoscope') }}">Trombinoscope</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    {%  if app.user %}
-                        <li><a href="{{ path('menuAdmin') }}">Menu</a></li>
-                        <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Se déconnecter</a></li>
-                    {% else %}
-                    <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Se connecter</a></li>
-                    {% endif %}
-                </ul>
+    <!--<img src="{{ asset('assets/images/background.jpg') }}">-->
+    <div class="container" >
+        <div class="raw">
+                <div class="jumbotron myJubotron2">
+                    <div class="col-xs-3 col-sm-3">
+                        <img class="img-responsive image-logo"  src="{{ asset('assets/images/blasonmons.png') }}" />
+                    </div>
+                    <div class="col-xs-9 col-sm-9">
+                        <div class="col-xs-12 col-sm-12">
+                            <h3 class="titreSite">Site de Mons en laonnois</h3><hr>
+                            <h4 class="titreSite">Bienvenue dans le village où il fait bon vivre</h4>
+                        </div>
+                    </div>
+                </div>
+        </div>
+            <div class="raw">
+            <div class="col-xs-12 col-sm-12">
+                <nav class="navbar navbar-inverse">
+                    <p class="navbar-text">Site de Mons</p>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ path('accueil') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Accueil<span class="sr-only" >(current)</span></a></li>
+                            <li><a href="{{ path('PageGroupe') }}">groupes</a></li>
+                            <li><a href="{{ path('PageCentreInteret') }}">Centre d'intéret</a></li>
+                            <li><a href="{{ path('PageTrombinoscope') }}">Trombinoscope</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {%  if app.user %}
+                                <li><a href="{{ path('menuAdmin') }}">Menu</a></li>
+                                <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Se déconnecter</a></li>
+                            {% else %}
+                            <li><a href="{{ path('login') }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Se connecter</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
             </div>
-        </nav>
+            </div>
+
+    </div>
+
+
         {% block body %}{% endblock %}
         {% block javascripts %}
         <!-- jQuery library -->
@@ -40,7 +64,7 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>{% endblock %}
         <!-- importation de la personnalisation CSS -->
 
-            <link rel="stylesheet" href="{{ asset('web/assets/css/stylePerso.css') }}" />
+            <link rel="stylesheet" href="{{ asset('assets/css/stylePerso.css') }}" />
         {% block fos_user_content %}{% endblock %}
     </body>
 </html>

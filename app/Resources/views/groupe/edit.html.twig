@@ -7,16 +7,17 @@
         <div class="row">
             <div class="col-xs-1 col-sm-1"></div>
             <div class="col-xs-10 col-sm-10">
-                <div class="panel panel-danger">
+                <div class="panel my-panel">
                     <div class="panel-heading text-center"><h2>Modification d'un groupe</h2></div>
-                    <div class="panel-body">
+                    <div class="panel-body my-panel-body">
                         {{ form_start(edit_form) }}
                         {{ form_widget(edit_form) }}
-                        <input class="btn btn-danger" type="submit" value="Modifier"/>
+                        <input class="btn btn-danger btn-lg btn-block" type="submit" value="Modifier"/>
                         {{ form_end(edit_form) }}
-                        <a class="btn btn-danger" type="button" href="{{ path('admin_groupe_index') }}">Retour à la
+                        <a class="btn btn-danger btn-lg btn-block" type="button" href="{{ path('admin_groupe_index') }}">Retour à la
                             liste</a>
                     </div>
+
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1"></div>
