@@ -16,7 +16,7 @@
                         <div class="row">
 
                                 {% for unePersonne in conseilMunicipal.PersonneStatuts %}
-                                    {% if unePersonne.statut.ordre == unStatut.ordre %}
+                                    {% if unePersonne.statut.ordre == unStatut.ordre and unePersonne.statut.nom == unStatut.nom %}
                                         <div class="col-xs-2 col-sm-3">
                                             <div class="panel panel-centreInteret">
                                                 <div class="panel-body">

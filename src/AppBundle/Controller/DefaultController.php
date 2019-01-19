@@ -83,7 +83,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $conseilMunicipal = $em->getRepository('AppBundle:Groupe')->findOneBy(array('nom' => 'Conseil Municipal'));
-        $listeStatus=$em->getRepository('AppBundle:Statut')->findBy(array(),array( 'ordre' => 'ASC'));
+        $listeStatus=$em->getRepository('AppBundle:Statut')->findBy(array(),array('ordre' => 'ASC'));
         return $this->render('visiteur/maMairie/trombinoscope.html.twig', array(
             'conseilMunicipal' => $conseilMunicipal,
             'listeStatus' =>$listeStatus
