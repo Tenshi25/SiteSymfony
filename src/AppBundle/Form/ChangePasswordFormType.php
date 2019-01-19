@@ -8,8 +8,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class ChangePasswordFormType extends AbstractType
+class ChangePasswordFormType
 {
+/**
+     * {@inheritdoc}
+     */
+/*
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
@@ -26,20 +30,7 @@ class ChangePasswordFormType extends AbstractType
     public function getName()
     {
         return 'me_user_change_password';
-    }
-    public function getBlockPrefix()
-    {
-        return 'appbundle_user';
-    }
-    public function getParent()
-    {
-        return 'FOS\UserBundle\Form\Type\ChangePasswordFormType ';
-
-        // Or for Symfony < 2.8
-        // return 'fos_user_registration';
-    }
-
-
+    }*/
 
 
 }

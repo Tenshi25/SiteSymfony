@@ -23,7 +23,7 @@
                                             {% if unePhoto.type == "photoPreview"  %}
                                                 <div class="panel panel-centreInteret">
                                                     <div class="panel-body"  >
-                                                        <a href="{{ path('centreinteret_voirPlus', { 'id': unCentreInteret.id }) }}"><img src=" {{ asset('uploads/') }}{{ unePhoto.lienPhoto }}" title="{{ unCentreInteret.titre}}" class="img-circle" alt="Responsive image"  />
+                                                        <a href="{{ path('centreinteret_voirPlus', { 'id': unCentreInteret.id }) }}"><img src=" {{ asset('uploads/') }}{{ unePhoto.lienPhoto }}" title="{{ unCentreInteret.titre}}" class="img-responsive img-rounded" alt="Responsive image"  />
                                                             <hr>
                                                             <!--{{ unCentreInteret.titre }}-->
                                                         </a>

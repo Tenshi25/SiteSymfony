@@ -183,6 +183,7 @@ class UserController extends Controller
      * @Route("/{id}/password/", name="admin_user_password")
      * @Method({"GET", "POST"})
      */
+
     public function changePasswordAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -192,9 +193,9 @@ class UserController extends Controller
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $formFactory = $this->container->get('fos_user.change_password.form.factory');
+        //$formFactory = $this->container->get('fos_user.change_password.form.factory');
 
-        $form = $formFactory->createForm();
+        $form = $this->createForm('AppBundle\Form\ChangePasswordFormType', $id);
         $form->remove('current_password');
         $form->setData($entity);
 

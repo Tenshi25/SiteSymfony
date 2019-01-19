@@ -54,24 +54,8 @@ class PersonneController extends Controller
             $em->persist($personne);
             $em->flush();
             $file = $personne->getPhoto();
-            var_dump($file);
-/*
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            //var_dump($file);
 
-            // Move the file to the directory where brochures are stored
-            try {
-                $file->move(
-                    $this->getParameter('images_directory'),
-                    $fileName
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
-            }
-
-            // updates the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $personne->setPhoto($fileName);
-*/
             return $this->redirectToRoute('admin_personne_show', array('id' => $personne->getId()));
         }
 
@@ -118,8 +102,8 @@ class PersonneController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $personne->uploadProfilePicture();
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('admin_personne_edit', array('id' => $personne->getId()));
         }
 
@@ -143,6 +127,10 @@ class PersonneController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if( $personne->getPhoto() != null)
+            {
+                unlink( __DIR__.'/../../../web/'.$personne->getUploadDir().'/'.$personne->getPhoto());
+            }
             $em->remove($personne);
             $em->flush();
         }

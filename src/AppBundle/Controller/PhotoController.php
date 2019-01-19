@@ -45,6 +45,7 @@ class PhotoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $photo->uploadProfilePicture();
             $em->persist($photo);
             $em->flush();
 
@@ -86,6 +87,7 @@ class PhotoController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $photo->uploadProfilePicture();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_photo_edit', array('id' => $photo->getId()));
@@ -111,6 +113,11 @@ class PhotoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if( $photo->getLienPhoto() != null)
+            {
+                unlink( __DIR__.'/../../../web/'.$photo->getUploadDir().'/'.$photo->getLienPhoto());
+            }
+
             $em->remove($photo);
             $em->flush();
         }

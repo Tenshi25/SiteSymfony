@@ -166,16 +166,44 @@ class Photo
     {
         return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
-    protected function getUploadDir()
+    public function getUploadDir()
     {
-        return 'uploads';
+        return 'uploads/photo';
     }
 
     public function uploadProfilePicture()
     {
-        $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
-        $this->photo=$this->file->getClientOriginalName();
-        $this->file=null;
+        if($this->file != null){
+            $fileName=$this->file->getClientOriginalName();
+            try {
+
+                $this->file->move($this->getUploadRootDir(), $fileName);
+                $this->lienPhoto=$this->file->getClientOriginalName();
+                $this->file=null;
+            }catch (FileException $e) {
+
+            }
+        }
+
+
+
+        /*
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            try {
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+
+            // updates the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $personne->setPhoto($fileName);
+*/
     }
 }
 

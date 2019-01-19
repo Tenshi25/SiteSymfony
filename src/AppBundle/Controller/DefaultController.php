@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\CentreInteret;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
@@ -93,8 +94,9 @@ class DefaultController extends Controller
     {
         $search = NULL;
         $formulaire = $this->createFormBuilder()
-            ->setAction($this->generateUrl('search_results', array('search' => $search)))
-            ->add('search', SearchType::class, array('constraints' => new Length(array('min' => 4)), 'attr' => array('placeholder' => 'Rechercher un centre d\'interêts','class' => 'Rechercher un centre d\'interêts') ))
+            ->setAction($this->generateUrl('search_results', array('categorie' => $search)))
+            ->setMethod('GET')
+            //->add('search', SearchType::class, array('constraints' => new Length(array('min' => 4)), 'attr' => array('placeholder' => 'Rechercher un centre d\'interêts','class' => 'Rechercher un centre d\'interêts') ))
             ->add('send', SubmitType::class, array('label' => 'Rechercher'))
             ->add('categorie', EntityType::class, array(
                 'class'=>'AppBundle\Entity\CategorieCentreInteret',
@@ -121,17 +123,29 @@ class DefaultController extends Controller
      * @Route("search_results", name="search_results")
      * @Method("GET")
      */
-    public function search_resultsAction($request)
+    public function search_resultsAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $form = $request->query->get('form');
+        $idcategorie = $form['categorie'];
+        $categorie =$em->getRepository('AppBundle:CategorieCentreInteret')->findOneBy(array('id'=>$idcategorie));
+        $categoriesCentreInteret = $em->getRepository('AppBundle:CategorieCentreInteret')->findAll();
+        $centresInterets = $em->getRepository(CentreInteret::class)->findBy(array('Categorie'=>$categorie));
+        // Ici on utilise une requête créée dans le GeneralRepository
+
+        return $this->render('visiteur/searchPageCentresInterets.html.twig', array('categorie' => $categorie, 'centresInterets' => $centresInterets, 'categoriesCentreInteret'=>$categoriesCentreInteret));
+
+
+       /* $em = $this->getDoctrine()->getManager();
         $request->query->all();
         $centresInterets = $em->getRepository('AppBundle:CentreInteret')->findAll();
-        $categoriesCentreInteret = $em->getRepository('AppBundle:CategorieCentreInteret')->findBy(array('nom'=>'pierre'));
+        $categoriesCentreInteret = $em->getRepository('AppBundle:CategorieCentreInteret')->findBy();
         return $this->render('visiteur/searchPageCentresInterets.html.twig', array(
             'centresInterets' => $centresInterets,
             'categoriesCentreInteret'=>$categoriesCentreInteret,
             'search'=>$request
 
-        ));
+        ));*/
     }
 }

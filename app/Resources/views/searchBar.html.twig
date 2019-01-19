@@ -2,14 +2,10 @@
     <div>
         {{ form_start(formulaire, { 'attr': {'class': 'navbar-form navbar-right'} }) }}
         <div class="form-group">
-
-
             <div class="input-group">
                 <div class="input-group-btn">
                     {{ form_widget(formulaire.categorie, { 'attr': {'class': 'btn btn-default dropdown-toggle', 'data-toggle':'dropdown', 'type':'button', 'aria-haspopup':'true', 'aria-expanded':'false'} }) }}
                 </div>
-                {{ form_widget(formulaire.search, { 'attr': {'class': 'form-control'} }) }}
-
             </div>
             {{ form_widget(formulaire.send, { 'attr': {'class': 'btn btn-default'} }) }}
         </div>

@@ -126,7 +126,7 @@ class Page
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ThemePage", inversedBy="Page")
+     * @ORM\ManyToOne(targetEntity="ThemePage", inversedBy="Pages")
      * @ORM\JoinColumn(name="Theme_id", referencedColumnName="id")
      */
     private $ThemePage;

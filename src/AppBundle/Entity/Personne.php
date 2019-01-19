@@ -86,16 +86,24 @@ class Personne
     {
         return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
-    protected function getUploadDir()
+    public function getUploadDir()
     {
-        return 'uploads';
+        return 'uploads/personnePhoto';
     }
 
         public function uploadProfilePicture()
     {
-        $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
-        $this->photo=$this->file->getClientOriginalName();
-        $this->file=null;
+        if($this->file != null) {
+            $fileName = $this->file->getClientOriginalName();
+            try {
+
+                $this->file->move($this->getUploadRootDir(), $fileName);
+                $this->photo = $this->file->getClientOriginalName();
+                $this->file = null;
+            } catch (FileException $e) {
+
+            }
+        }
     }
 
 
