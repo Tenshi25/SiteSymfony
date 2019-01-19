@@ -1,24 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="container" style="margin-top :10px">
-        {{ render(controller('AppBundle:Default:search')) }}
+
         <div class="row">
             <div class="col-xs-1 col-sm-1"></div>
             <div class="col-xs-10 col-sm-10">
-                <h1>Liste des centres d'intérêts Trier</h1>
-                {% for unCatCentreInteret in categoriesCentreInteret %}
+                <div class="jumbotron myJubotron">
+                    <nav class="navbar navbar-default">
+                        {{ render(controller('AppBundle:Default:search')) }}
+                    </nav>
+                    <h3>{{ categorie.libCat}}</h3>
+                    <hr>
+
                     <div class="row">
+
                         {% for unCentreInteret in centresInterets %}
-                            {% if unCentreInteret.Categorie == unCatCentreInteret  %}
+
                                 <div class="col-xs-2 col-sm-2">
-                                    <h2>{{ unCatCentreInteret.libCat}}</h2>
-                                    <h2>{{ search.search}}</h2>
-                                    <hr>
+
                                     {% for unePhoto in unCentreInteret.photos %}
                                         {% if unePhoto.type == "photoPreview"  %}
                                             <div class="panel panel-primary">
                                                 <div class="panel-body">
-                                                    <a href="{{ path('centreinteret_voirPlus', { 'id': unCentreInteret.id }) }}"><img src=" {{ asset('uploads/') }}{{ unePhoto.lienPhoto }}"  class="img-circle" alt="Responsive image" style="height: 100px ;width: 100px; " />
+                                                    <a href="{{ path('centreinteret_voirPlus', { 'id': unCentreInteret.id }) }}"><img src=" {{ asset('uploads/') }}{{ unePhoto.lienPhoto }}"  class="img-circle" alt="voir plus" style="height: 100px ;width: 100px; " />
                                                         <hr>
                                                         {{ unCentreInteret.titre }}
                                                     </a>
@@ -27,15 +31,15 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
-                            {% endif %}
+
 
                         {% else %}
                             <li><em>Il y a aucun centre d'intérêt</em></li>
-                        {% endfor %}
                     </div>
                 {% endfor %}
             </div>
             <div class="col-xs-1 col-sm-1"></div>
+        </div>
         </div>
     </div>
 {% endblock %}

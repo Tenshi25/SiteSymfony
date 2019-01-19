@@ -1,3 +1,77 @@
-.container .jumbotron, .container-fluid .jumbotron .jumbotron {
+.myJubotron {
+    border-style:solid;
+    border-color: grey;
+    background-color: white;
+}
+.degrade {
+    background-image:linear-gradient(#cc0000 10%, white 90%);
+    background-color: whitesmoke;
+}
+ .my-panel {
+     border-style:solid;
+     margin-bottom: 20px;
+     background-color: #cc0000;
+     border-radius: 4px;
+     border-color: grey;
+     box-sizing: border-box;
+     color : white;
+     /*border-color:#cc0000;*/
+ }
+.my-panel-body {
     background-color: white !important;
+    color: black;
+}
+body {
+    color:black;
+    background-color:white;
+    margin:0;
+    padding:0;
+    background: url(../images/background.jpg) no-repeat center fixed;
+    background-size: cover; /* version standardisée */
+    -moz-box-sizing: border-box; box-sizing: border-box;
+    padding-bottom:8em;
+    position: relative;
+}
+.panel-centreInteret {
+    border-style:solid;
+    border-color: grey;
+    background-color: white;
+    color : black;
+}
+.image-Perso {
+    width: 50px;
+    height: 50px;
+}
+.image-logo {
+    width: 100px;
+    height: 100px;
+}
+.myJubotron2{
+    border-style:solid;
+    border-color: black;
+    /*background-color: white;*/
+    background-color: #cc0000;
+    padding-bottom: 15%;
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+.titreSite{
+    /*color:#cc0000;*/
+    color:white;
+}
+.page-footer
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0
+}
+.Jubotron-footer{
+    border-style:solid;
+    border-color: black;
+    background-color:black;
+    color:white;
+    margin-bottom: 0px;
 }

@@ -7,9 +7,9 @@
         <div class="row">
             <div class="col-xs-1 col-sm-1"></div>
             <div class="col-xs-10 col-sm-10">
-                <div class="panel panel-danger">
+                <div class="panel my-panel">
                     <div class="panel-heading text-center"><h2>Liste de groupes</h2></div>
-                    <div class="panel-body">
+                    <div class="panel-body my-panel-body">
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -23,6 +23,7 @@
                             <tbody>
                             {% for groupe in groupes %}
                                 <tr>
+                                    <td>{{ groupe.id }}</td>
                                     <td>{{ groupe.nom }}</td>
                                     <td>{{ groupe.typeGroup.libelle }}</td>
                                     <td><a class="btn btn-danger " type="button" href="{{ path('admin_groupe_show', { 'id': groupe.id}) }}">Afficher</a></td>

@@ -30,7 +30,7 @@ class TypeGroupe
     private $libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity="Groupe", mappedBy="Categorie")
+     * @ORM\OneToMany(targetEntity="Groupe", mappedBy="typeGroup")
      */
     private $groups;
 

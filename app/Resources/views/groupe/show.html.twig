@@ -5,20 +5,22 @@
         <div class="row">
             <div class="col-xs-1 col-sm-1"></div>
             <div class="col-xs-10 col-sm-10">
-                <div class="panel panel-primary">
+                <div class="panel my-panel">
                     <div class="panel-heading text-center"><h1>Groupe {{ groupe.nom }}</h1></div>
-                    <div class="panel-body">
+                    <div class="panel-body my-panel-body">
                         <table class="table table-striped">
                             <tbody>
                             <tr>
                                 <th>#Id</th>
                                 <th>Nom</th>
+                                <th>type</th>
                                 <th>modifier</th>
                                 <th>Supprimer</th>
                             </tr>
                             <tr>
                                 <td>{{ groupe.id }}</td>
                                 <td>{{ groupe.nom }}</td>
+                                <td>{{ groupe.typeGroup.libelle }}</td>
                                 <td><a class="btn btn-danger " type="button"
                                        href="{{ path('admin_groupe_edit', { 'id': groupe.id }) }}">Modifier</a></td>
                                 <td>{{ form_start(delete_form) }}
@@ -32,8 +34,10 @@
                                     <td></td>
                                     <td>{{ unFaireParti.personne.nom }}</td>
                                     <td>{{ unFaireParti.personne.prenom }}</td>
-                                    <td>{{ unFaireParti.personne.biographie }}</td>
-                                   
+                                    <td><a class="btn btn-danger " type="button"
+                                           href="{{ path('admin_faire_parti_statut_delete', { 'id': unFaireParti.id} ) }}">supprimer</a></td>
+                                           <!--href="{{ path('admin_faire_parti_statut_delete', { 'id': unFaireParti.id , 'idgroupe': groupe.id } ) }}">supprimer</a></td>-->
+
                                 </tr>
                             {% endfor %}
                             <tr>

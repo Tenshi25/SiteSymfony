@@ -8,12 +8,19 @@
         <div class="row">
             <div class="col-xs-1 col-sm-1"></div>
             <div class="col-xs-10 col-sm-10">
-                <div class="jumbotron" style="border-style:solid; border-color: grey; background-color: white">
-                    <h2>Liste des Commissions</h2>
-
+                <div class="jumbotron myJubotron" >
+                    <div class="panel my-panel">
+                        <div class="panel-body my-panel-body">
+                            <h2>Liste des Commissions</h2>
+                        </div>
+                    </div>
                     {% for groupe in groupes %}
+                    {% if groupe.personneStatuts is not empty   %}
+
                         <h3>{{ groupe.nom }} : </h3>
+
                         <hr>
+
                         <p>
                             {% for statut in groupe.personneStatuts %}
                                 {{ statut.personne.nom }}
@@ -21,6 +28,7 @@
                                 {{ statut.statut.nom }},
                             {% endfor %}
                         </p>
+                    {% endif %}
                     {% endfor %}
                 </div>
 

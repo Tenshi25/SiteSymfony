@@ -36,7 +36,7 @@ class CentreInteret
      */
     private $description;
     /**
-     * @ORM\ManyToOne(targetEntity="CategorieCentreInteret", inversedBy="CentreInteret")
+     * @ORM\ManyToOne(targetEntity="CategorieCentreInteret", inversedBy="CentresInterets")
      * @ORM\JoinColumn(name="Categorie_id", referencedColumnName="id")
      */
     private $Categorie;
